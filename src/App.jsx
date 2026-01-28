@@ -150,11 +150,12 @@ function HeroSection({ onNavigate }) {
       {/* Background */}
       <div className="absolute inset-0 bg-stone-900">
         <div 
-          className="absolute inset-0 opacity-40"
+          className="absolute inset-0 opacity-30"
           style={{
-            backgroundImage: `url(${IMAGES.teaching})`,
-            backgroundSize: "cover",
+            backgroundImage: `url(${IMAGES.logo})`,
+            backgroundSize: "contain",
             backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
           }}
         />
         <div className="absolute inset-0 bg-gradient-to-r from-stone-900 via-stone-900/80 to-transparent" />
@@ -168,14 +169,11 @@ function HeroSection({ onNavigate }) {
             </span>
           </div>
           
-          <div className="flex items-center gap-6 mb-6">
-            <img src={IMAGES.logo} alt="TD North Golf Logo" className="w-20 h-20 md:w-28 md:h-28 object-contain" />
-            <h1 className="font-serif text-5xl md:text-7xl text-stone-100 leading-tight">
-              Science-Driven
-              <br />
-              <span className="text-stone-400">Golf Instruction</span>
-            </h1>
-          </div>
+          <h1 className="font-serif text-5xl md:text-7xl text-stone-100 leading-tight mb-6">
+            Science-Driven
+            <br />
+            <span className="text-stone-400">Golf Instruction</span>
+          </h1>
           
           <p className="text-lg text-stone-300 mb-8 leading-relaxed max-w-xl">
             Unlock your potential through biomechanics-based coaching. I help golfers of all levels build efficient, powerful, and repeatable swings.
