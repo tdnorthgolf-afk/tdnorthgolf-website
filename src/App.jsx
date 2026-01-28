@@ -149,17 +149,21 @@ function HeroSection({ onNavigate }) {
     <section id="home" className="min-h-screen relative flex items-center">
       {/* Background */}
       <div className="absolute inset-0 bg-stone-900">
+        {/* Logo on right side */}
         <div 
-          className="absolute inset-0 opacity-30"
+          className="absolute right-0 top-0 bottom-0 w-1/2 opacity-20"
           style={{
             backgroundImage: `url(${IMAGES.logo})`,
-            backgroundSize: "contain",
-            backgroundPosition: "right center",
+            backgroundSize: "80%",
+            backgroundPosition: "center right 10%",
             backgroundRepeat: "no-repeat",
             filter: "invert(1)",
+            maskImage: "linear-gradient(to right, transparent, black 30%)",
+            WebkitMaskImage: "linear-gradient(to right, transparent, black 30%)",
           }}
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-stone-900 via-stone-900/80 to-transparent" />
+        {/* Gradient overlay for smooth blend */}
+        <div className="absolute inset-0 bg-gradient-to-r from-stone-900 via-stone-900/90 to-stone-900/70" />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 py-32">
