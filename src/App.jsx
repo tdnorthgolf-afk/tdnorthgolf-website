@@ -154,7 +154,7 @@ function HeroSection({ onNavigate }) {
           style={{
             backgroundImage: `url(${IMAGES.logo})`,
             backgroundSize: "contain",
-            backgroundPosition: "center",
+            backgroundPosition: "right center",
             backgroundRepeat: "no-repeat",
             filter: "invert(1)",
           }}
