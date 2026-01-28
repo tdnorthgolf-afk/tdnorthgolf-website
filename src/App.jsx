@@ -25,21 +25,6 @@ const NAV_ITEMS = [
   { id: "book", label: "Book a Lesson" },
 ];
 
-const TESTIMONIALS = [
-  {
-    text: "TD has an excellent communication style and knows what he's teaching. Very lucky to have him as part of my development.",
-    author: "Student Review",
-  },
-  {
-    text: "TD was able to quickly diagnose my problem and provide some drills to improve my swing path. Thanks much!",
-    author: "Student Review",
-  },
-  {
-    text: "TD was very professional and made my sister and I feel good about the skills he was teaching us!",
-    author: "Student Review",
-  },
-];
-
 const FAQS = [
   {
     question: "What should I bring to my lesson?",
@@ -64,6 +49,10 @@ const FAQS = [
   {
     question: "Do you offer playing lessons?",
     answer: "Yes, playing lessons are a great way to work on course management, shot selection, and on-course execution.",
+  },
+  {
+    question: "How does online coaching work?",
+    answer: "I'll analyze videos you send me and provide detailed feedback, custom drills, and virtual sessions via video call. It's perfect for golfers who can't make it to Arlington in person.",
   },
 ];
 
@@ -520,22 +509,6 @@ function SuccessSection() {
             <img src={IMAGES.juniorBoys} alt="Junior golfers with medals" className="w-full h-full object-cover object-[center_30%]" />
           </div>
         </div>
-
-        {/* Testimonials */}
-        <div className="mt-24">
-          <h3 className="font-serif text-2xl text-stone-100 mb-8 text-center">What Students Say</h3>
-          <div className="grid md:grid-cols-3 gap-6">
-            {TESTIMONIALS.map((testimonial, idx) => (
-              <div key={idx} className="bg-stone-800/50 border border-stone-700 p-6">
-                <svg className="w-8 h-8 text-stone-600 mb-4" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
-                </svg>
-                <p className="text-stone-300 mb-4 leading-relaxed">{testimonial.text}</p>
-                <p className="text-stone-500 text-sm">{testimonial.author}</p>
-              </div>
-            ))}
-          </div>
-        </div>
       </div>
     </section>
   );
@@ -644,7 +617,7 @@ function BookingSection() {
     e.preventDefault();
     // Form will be handled by Formspree or similar
     const form = e.target;
-    fetch("https://formspree.io/f/YOUR_FORM_ID", {
+    fetch("https://formspree.io/f/xreqvrvj", {
       method: "POST",
       body: new FormData(form),
       headers: { Accept: "application/json" },
