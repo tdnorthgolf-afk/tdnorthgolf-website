@@ -1,17 +1,17 @@
 import { useState, useEffect } from "react";
 
-// Image paths (these will be in /public/images/)
+// Image paths (these will be in /public/Images/)
 const IMAGES = {
-  logo: "/images/IMG_2155.jpeg",
-  hero: "/images/Facetune_12-12-2022-05-24-28.jpeg",
-  teaching: "/images/Facetune_12-12-2022-05-24-28.jpeg",
-  trophy1: "/images/IMG_6559.png",
-  trophy2: "/images/IMG_1813.jpeg",
-  trophy3: "/images/IMG_6279.jpeg",
-  juniors: "/images/IMG_1574.jpeg",
-  juniorBoys: "/images/IMG_8883.jpeg",
-  course: "/images/IMG_8604.jpeg",
-  group: "/images/IMG_8547.jpeg",
+  logo: "/Images/IMG_2155.jpeg",
+  hero: "/Images/Facetune_12-12-2022-05-24-28.jpeg",
+  teaching: "/Images/Facetune_12-12-2022-05-24-28.jpeg",
+  trophy1: "/Images/IMG_6559.png",
+  trophy2: "/Images/IMG_1813.jpeg",
+  trophy3: "/Images/IMG_6279.jpeg",
+  juniors: "/Images/IMG_1574.jpeg",
+  juniorBoys: "/Images/IMG_8883.jpeg",
+  course: "/Images/IMG_8604.jpeg",
+  group: "/Images/IMG_8547.jpeg",
 };
 
 const NAV_ITEMS = [
