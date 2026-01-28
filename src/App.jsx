@@ -12,6 +12,7 @@ const IMAGES = {
   juniorBoys: "/Images/IMG_8883.jpeg",
   course: "/Images/IMG_8604.jpeg",
   group: "/Images/IMG_8547.jpeg",
+  aboutPhoto: "/Images/IMG_2974.jpeg",
 };
 
 const NAV_ITEMS = [
@@ -70,7 +71,7 @@ const FAQS = [
 function Logo({ className = "" }) {
   return (
     <div className={`flex items-center gap-3 ${className}`}>
-      <div className="w-12 h-12 bg-stone-900 rounded flex items-center justify-center overflow-hidden p-1">
+      <div className="w-12 h-12 rounded flex items-center justify-center overflow-hidden">
         <img src={IMAGES.logo} alt="TD Logo" className="w-full h-full object-contain" />
       </div>
       <span className="font-serif text-xl tracking-wide text-stone-900">TD NORTH GOLF</span>
@@ -167,11 +168,14 @@ function HeroSection({ onNavigate }) {
             </span>
           </div>
           
-          <h1 className="font-serif text-5xl md:text-7xl text-stone-100 leading-tight mb-6">
-            Science-Driven
-            <br />
-            <span className="text-stone-400">Golf Instruction</span>
-          </h1>
+          <div className="flex items-center gap-6 mb-6">
+            <img src={IMAGES.logo} alt="TD North Golf Logo" className="w-20 h-20 md:w-28 md:h-28 object-contain" />
+            <h1 className="font-serif text-5xl md:text-7xl text-stone-100 leading-tight">
+              Science-Driven
+              <br />
+              <span className="text-stone-400">Golf Instruction</span>
+            </h1>
+          </div>
           
           <p className="text-lg text-stone-300 mb-8 leading-relaxed max-w-xl">
             Unlock your potential through biomechanics-based coaching. I help golfers of all levels build efficient, powerful, and repeatable swings.
@@ -260,8 +264,8 @@ function AboutSection() {
           <div className="relative">
             <div className="aspect-[4/5] bg-stone-200 relative overflow-hidden">
               <img
-                src={IMAGES.trophy1}
-                alt="TD North with student"
+                src={IMAGES.aboutPhoto}
+                alt="TD North"
                 className="absolute inset-0 w-full h-full object-cover object-top"
               />
             </div>
@@ -510,7 +514,7 @@ function SuccessSection() {
           </div>
 
           <div className="aspect-video bg-stone-800 overflow-hidden">
-            <img src={IMAGES.juniorBoys} alt="Junior golfers with medals" className="w-full h-full object-cover object-top" />
+            <img src={IMAGES.juniorBoys} alt="Junior golfers with medals" className="w-full h-full object-cover object-[center_30%]" />
           </div>
         </div>
 
