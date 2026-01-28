@@ -156,6 +156,7 @@ function HeroSection({ onNavigate }) {
             backgroundSize: "contain",
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
+            filter: "invert(1)",
           }}
         />
         <div className="absolute inset-0 bg-gradient-to-r from-stone-900 via-stone-900/80 to-transparent" />
