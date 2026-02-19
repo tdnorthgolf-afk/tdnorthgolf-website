@@ -159,7 +159,7 @@ function HeroSection({ onNavigate }) {
         <div className="max-w-2xl">
           <div className="mb-6">
             <span className="inline-block px-4 py-1 bg-stone-100/10 border border-stone-100/20 text-stone-100 text-sm tracking-widest uppercase">
-              Arlington, Texas
+              Fort Worth, Texas
             </span>
           </div>
           
@@ -279,35 +279,35 @@ function ServicesSection({ onNavigate }) {
   const services = [
     {
       title: "Private Lessons",
-      subtitle: "Adults",
-      price: "$150",
+      subtitle: "Adult Members",
+      price: "$175",
       unit: "per hour",
       description: "One-on-one coaching with video analysis, launch monitor data, and personalized instruction tailored to your goals.",
       features: ["Video analysis", "Launch monitor feedback", "Custom practice plan"],
     },
     {
       title: "Private Lessons",
-      subtitle: "Juniors",
-      price: "$125",
+      subtitle: "Junior Members",
+      price: "$150",
       unit: "per hour",
       description: "Age-appropriate instruction focused on building fundamentals, athletic development, and a love for the game.",
       features: ["Age-appropriate coaching", "Fundamental development", "Competition preparation"],
     },
     {
-      title: "Unlimited Package",
-      subtitle: "Serious Players",
-      price: "$1,500",
-      unit: "per month",
-      description: "For dedicated golfers ready to commit to significant improvement. Unlimited access to coaching and practice guidance.",
-      features: ["Unlimited lessons", "Priority scheduling", "Ongoing support"],
+      title: "Private Lessons",
+      subtitle: "Non-Members",
+      price: "$200",
+      unit: "per hour",
+      description: "Full access to professional instruction with video analysis and launch monitor data, open to all golfers.",
+      features: ["Video analysis", "Launch monitor feedback", "Custom practice plan"],
     },
     {
-      title: "Junior Development",
-      subtitle: "Group Training",
-      price: "Contact",
-      unit: "for details",
-      description: "Structured group training for junior golfers looking to develop their skills in a competitive, supportive environment.",
-      features: ["Small group setting", "Skill development", "Tournament prep"],
+      title: "Playing Lessons",
+      subtitle: "On-Course",
+      price: "$300",
+      unit: "per 9 holes",
+      description: "Take your game to the course. Work on strategy, shot selection, and course management in a real-play environment.",
+      features: ["Course management", "Shot selection", "Real-time feedback"],
     },
     {
       title: "Online Coaching",
@@ -384,10 +384,10 @@ function LocationSection() {
           <div>
             <span className="text-sm tracking-widest text-stone-500 uppercase mb-4 block">Location</span>
             <h2 className="font-serif text-4xl md:text-5xl text-stone-900 mb-6">
-              Crown Golf at<br />Texas Rangers Golf Club
+              Mira Vista<br />Country Club
             </h2>
             <p className="text-stone-600 leading-relaxed mb-8">
-              Located at the new Texas Rangers Golf Club in Arlington, Texas. The facility features a 23-acre practice area including a double-ended range, practice hole, and two short game areas with multiple greens—everything you need to develop every aspect of your game.
+              Located at the beautiful Mira Vista Country Club in Fort Worth, Texas. The facility offers world-class practice amenities and a championship golf course—everything you need to develop every aspect of your game.
             </p>
 
             <div className="space-y-4">
@@ -400,7 +400,7 @@ function LocationSection() {
                 </div>
                 <div>
                   <p className="font-medium text-stone-900">Address</p>
-                  <p className="text-stone-600">701 Brown Blvd, Arlington, TX 76011</p>
+                  <p className="text-stone-600">6600 Mira Vista Blvd, Fort Worth, TX 76132</p>
                 </div>
               </div>
 
@@ -412,8 +412,7 @@ function LocationSection() {
                 </div>
                 <div>
                   <p className="font-medium text-stone-900">Hours</p>
-                  <p className="text-stone-600">Monday – Friday: 9am – 5pm</p>
-                  <p className="text-stone-600">Sunday: 9am – 5pm</p>
+                  <p className="text-stone-600">By Appointment</p>
                 </div>
               </div>
 
@@ -440,7 +439,7 @@ function LocationSection() {
             </div>
             <div className="col-span-2 aspect-video bg-stone-200 overflow-hidden">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3355.0!2d-97.108!3d32.767!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864e7d0b0b0b0b0b%3A0x0!2sTexas%20Rangers%20Golf%20Club!5e0!3m2!1sen!2sus!4v1234567890"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3357.5!2d-97.42!3d32.68!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864e71c5d6e3f8a7%3A0x9f0c0c0c0c0c0c0c!2sMira%20Vista%20Country%20Club!5e0!3m2!1sen!2sus!4v1234567890"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
@@ -636,24 +635,11 @@ function BookingSection() {
               Book a Lesson
             </h2>
             <p className="text-stone-400 leading-relaxed mb-8">
-              Ready to improve your game? Book online through Vagaro or send me a message with any questions.
+              Ready to improve your game? Send me a message or contact me directly to schedule your lesson.
             </p>
 
-            {/* Vagaro Booking Button */}
-            <a
-              href="https://www.vagaro.com/crowngolfperformancearlington"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 px-8 py-4 bg-stone-100 text-stone-900 font-medium tracking-wide hover:bg-white transition-colors mb-8"
-            >
-              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-              </svg>
-              Book Online with Vagaro
-            </a>
-
             <div className="pt-8 border-t border-stone-700">
-              <p className="text-stone-500 text-sm mb-4">Or contact directly:</p>
+              <p className="text-stone-500 text-sm mb-4">Contact directly:</p>
               <div className="space-y-2 text-stone-300">
                 <p>📧 tdnorthgolf@gmail.com</p>
                 <p>📞 (432) 770-5253</p>
