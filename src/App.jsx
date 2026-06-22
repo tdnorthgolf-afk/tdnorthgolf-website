@@ -18,6 +18,7 @@ const NAV_ITEMS = [
   { id: "home", label: "Home" },
   { id: "about", label: "About" },
   { id: "services", label: "Services" },
+  { id: "performance", label: "Performance" },
   { id: "location", label: "Location" },
   { id: "success", label: "Student Success" },
   { id: "faq", label: "FAQ" },
@@ -368,6 +369,113 @@ function ServicesSection({ onNavigate }) {
             </div>
           ))}
         </div>
+      </div>
+    </section>
+  );
+}
+
+// TD North Performance Section
+function PerformanceSection() {
+  const TALLY_URL = "https://tally.so/r/ODdbdM";
+  const STRIPE_URL = "https://buy.stripe.com/eVqcN46nZeH454B75P5ZC00";
+
+  const steps = [
+    {
+      num: "01",
+      title: "Tell me about your session",
+      text: "A two-minute form: what you played or practiced, your stats, your next session, and what you'll have access to.",
+    },
+    {
+      num: "02",
+      title: "Get your plan",
+      text: "A personalized plan built around your exact time window, facility, and the part of your game that needs it most.",
+    },
+    {
+      num: "03",
+      title: "Track and adjust",
+      text: "Log rounds, check in weekly, and watch your stats and plans evolve with your game all season.",
+    },
+  ];
+
+  const FreeFeatures = ["One personalized practice plan", "Built around your time & access", "Delivered to your inbox"];
+  const PerfFeatures = ["Unlimited practice plans, any day", "Round & practice stat tracking", "Weekly performance check-ins", "Ask-a-coach anytime"];
+
+  return (
+    <section id="performance" className="py-24 bg-navy-950">
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="text-center mb-16">
+          <span className="text-sm tracking-widest text-navy-500 uppercase mb-4 block">TD North Performance</span>
+          <h2 className="font-serif text-4xl md:text-5xl text-navy-100 mb-4">
+            Your game, coached between lessons
+          </h2>
+          <p className="text-navy-400 max-w-2xl mx-auto">
+            Personalized practice plans tailored to your time, your equipment, and what your game actually needs &mdash; plus round tracking, stats, and weekly check-ins, all built on my coaching system and sent straight to your inbox.
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-3 gap-8 mb-20 max-w-5xl mx-auto">
+          {steps.map((step, idx) => (
+            <div key={idx} className="border-t border-navy-700 pt-5">
+              <div className="font-serif text-3xl text-navy-300 mb-2">{step.num}</div>
+              <h3 className="text-navy-100 font-medium mb-2">{step.title}</h3>
+              <p className="text-navy-400 text-sm leading-relaxed">{step.text}</p>
+            </div>
+          ))}
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+          <div className="bg-navy-800/50 border border-navy-700 p-8 flex flex-col">
+            <h3 className="font-serif text-2xl text-navy-100">First Plan</h3>
+            <div className="mt-4 mb-1">
+              <span className="text-4xl font-serif text-navy-100">Free</span>
+            </div>
+            <p className="text-navy-400 text-sm mb-6">Try it once, no card required.</p>
+            <ul className="space-y-3 mb-8 flex-1">
+              {FreeFeatures.map((f, i) => (
+                <li key={i} className="text-navy-300 text-sm flex items-start gap-2">
+                  <span className="w-1 h-1 bg-navy-400 rounded-full mt-2 shrink-0" />
+                  {f}
+                </li>
+              ))}
+            </ul>
+            <a
+              href={TALLY_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block text-center w-full py-3.5 border border-navy-600 text-navy-200 text-sm tracking-wide hover:bg-navy-100 hover:text-navy-900 hover:border-navy-100 transition-colors"
+            >
+              Start free
+            </a>
+          </div>
+
+          <div className="bg-navy-800/50 border border-navy-500 p-8 flex flex-col relative">
+            <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-navy-300 text-navy-950 text-xs tracking-widest uppercase px-3 py-1">Full access</span>
+            <h3 className="font-serif text-2xl text-navy-100">Performance</h3>
+            <div className="mt-4 mb-1">
+              <span className="text-4xl font-serif text-navy-100">$30</span>
+              <span className="text-navy-500 text-sm ml-2">/ month</span>
+            </div>
+            <p className="text-navy-400 text-sm mb-6">The whole loop, on demand.</p>
+            <ul className="space-y-3 mb-8 flex-1">
+              {PerfFeatures.map((f, i) => (
+                <li key={i} className="text-navy-300 text-sm flex items-start gap-2">
+                  <span className="w-1 h-1 bg-navy-300 rounded-full mt-2 shrink-0" />
+                  {f}
+                </li>
+              ))}
+            </ul>
+            <a
+              href={STRIPE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block text-center w-full py-3.5 bg-navy-100 text-navy-900 text-sm font-medium tracking-wide hover:bg-white transition-colors"
+            >
+              Join for $30/mo
+            </a>
+          </div>
+        </div>
+
+        <p className="text-center text-navy-500 text-sm mt-8">Cancel anytime. Your first plan is always free.</p>
       </div>
     </section>
   );
@@ -809,6 +917,7 @@ export default function App() {
       <HeroSection onNavigate={handleNavigate} />
       <AboutSection />
       <ServicesSection onNavigate={handleNavigate} />
+      <PerformanceSection />
       <LocationSection />
       <SuccessSection />
       <InstagramSection />
