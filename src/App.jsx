@@ -2,13 +2,13 @@ import { useState, useEffect } from "react";
 
 // Image paths (these will be in /public/Images/)
 const IMAGES = {
-  logo: "/Images/logo-navy-soft.png",
-  logoLight: "/Images/logo-cream.png",
+  logo: "/Images/IMG_1314.png",
+  logoLight: "/Images/IMG_1315.png",
   course: "/Images/IMG_8604.jpeg",
   group: "/Images/IMG_8547.jpeg",
   aboutPhoto: "/Images/IMG_2974.jpeg",
   // Mira Vista junior program photos
-  juniorClinic: "/Images/IMG_5562.jpeg",
+  juniorClinic: "/Images/IMG_5768.jpeg",
   juniorPair: "/Images/IMG_0358.jpeg",
   juniorTeam: "/Images/IMG_5185.jpeg",
   juniorPatio: "/Images/IMG_1675.jpeg",
