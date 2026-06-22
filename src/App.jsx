@@ -2,17 +2,16 @@ import { useState, useEffect } from "react";
 
 // Image paths (these will be in /public/Images/)
 const IMAGES = {
-  logo: "/Images/IMG_2155.jpeg",
-  hero: "/Images/Facetune_12-12-2022-05-24-28.jpeg",
-  teaching: "/Images/Facetune_12-12-2022-05-24-28.jpeg",
-  trophy1: "/Images/IMG_6559.png",
-  trophy2: "/Images/IMG_1813.jpeg",
-  trophy3: "/Images/IMG_6279.jpeg",
-  juniors: "/Images/IMG_1574.jpeg",
-  juniorBoys: "/Images/IMG_8883.jpeg",
+  logo: "/Images/logo-navy-soft.png",
+  logoLight: "/Images/logo-cream.png",
   course: "/Images/IMG_8604.jpeg",
   group: "/Images/IMG_8547.jpeg",
   aboutPhoto: "/Images/IMG_2974.jpeg",
+  // Mira Vista junior program photos
+  juniorClinic: "/Images/IMG_5562.jpeg",
+  juniorPair: "/Images/IMG_0358.jpeg",
+  juniorTeam: "/Images/IMG_5185.jpeg",
+  juniorPatio: "/Images/IMG_1675.jpeg",
 };
 
 const NAV_ITEMS = [
@@ -52,18 +51,18 @@ const FAQS = [
   },
   {
     question: "How does online coaching work?",
-    answer: "I'll analyze videos you send me and provide detailed feedback, custom drills, and virtual sessions via video call. It's perfect for golfers who can't make it to Arlington in person.",
+    answer: "I'll analyze videos you send me and provide detailed feedback, custom drills, and virtual sessions via video call. It's perfect for golfers who can't make it to Fort Worth in person.",
   },
 ];
 
 // Logo Component
-function Logo({ className = "" }) {
+function Logo({ className = "", light = false }) {
   return (
     <div className={`flex items-center gap-3 ${className}`}>
-      <div className="w-12 h-12 rounded flex items-center justify-center overflow-hidden">
-        <img src={IMAGES.logo} alt="TD Logo" className="w-full h-full object-contain" />
+      <div className="w-12 h-12 flex items-center justify-center overflow-hidden">
+        <img src={light ? IMAGES.logoLight : IMAGES.logo} alt="TD North Golf" className="w-full h-full object-contain" />
       </div>
-      <span className="font-serif text-xl tracking-wide text-stone-900">TD NORTH GOLF</span>
+      <span className={`font-serif text-xl tracking-wide ${light ? "text-navy-50" : "text-navy-900"}`}>TD NORTH GOLF</span>
     </div>
   );
 }
@@ -74,11 +73,11 @@ function Navigation({ activeSection, onNavigate, isScrolled }) {
 
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-      isScrolled ? "bg-stone-100/95 backdrop-blur-sm shadow-sm" : "bg-transparent"
+      isScrolled ? "bg-navy-100/95 backdrop-blur-sm shadow-sm" : "bg-transparent"
     }`}>
       <div className="max-w-7xl mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
-          <Logo />
+          <Logo light={!isScrolled} />
           
           {/* Desktop Nav */}
           <div className="hidden lg:flex items-center gap-8">
@@ -88,8 +87,8 @@ function Navigation({ activeSection, onNavigate, isScrolled }) {
                 onClick={() => onNavigate(item.id)}
                 className={`text-sm tracking-wide transition-colors ${
                   activeSection === item.id
-                    ? "text-stone-900 font-medium"
-                    : isScrolled ? "text-stone-600 hover:text-stone-900" : "text-stone-300 hover:text-white"
+                    ? "text-navy-900 font-medium"
+                    : isScrolled ? "text-navy-600 hover:text-navy-900" : "text-navy-300 hover:text-white"
                 }`}
               >
                 {item.label}
@@ -103,16 +102,16 @@ function Navigation({ activeSection, onNavigate, isScrolled }) {
             className="lg:hidden p-2"
           >
             <div className="w-6 h-5 flex flex-col justify-between">
-              <span className={`h-0.5 transition-all ${isScrolled ? "bg-stone-900" : "bg-stone-100"} ${mobileOpen ? "rotate-45 translate-y-2" : ""}`} />
-              <span className={`h-0.5 transition-opacity ${isScrolled ? "bg-stone-900" : "bg-stone-100"} ${mobileOpen ? "opacity-0" : ""}`} />
-              <span className={`h-0.5 transition-all ${isScrolled ? "bg-stone-900" : "bg-stone-100"} ${mobileOpen ? "-rotate-45 -translate-y-2" : ""}`} />
+              <span className={`h-0.5 transition-all ${isScrolled ? "bg-navy-900" : "bg-navy-100"} ${mobileOpen ? "rotate-45 translate-y-2" : ""}`} />
+              <span className={`h-0.5 transition-opacity ${isScrolled ? "bg-navy-900" : "bg-navy-100"} ${mobileOpen ? "opacity-0" : ""}`} />
+              <span className={`h-0.5 transition-all ${isScrolled ? "bg-navy-900" : "bg-navy-100"} ${mobileOpen ? "-rotate-45 -translate-y-2" : ""}`} />
             </div>
           </button>
         </div>
 
         {/* Mobile Nav */}
         {mobileOpen && (
-          <div className="lg:hidden mt-4 pb-4 border-t border-stone-200 pt-4 bg-stone-100 -mx-6 px-6">
+          <div className="lg:hidden mt-4 pb-4 border-t border-navy-200 pt-4 bg-navy-100 -mx-6 px-6">
             {NAV_ITEMS.map((item) => (
               <button
                 key={item.id}
@@ -120,7 +119,7 @@ function Navigation({ activeSection, onNavigate, isScrolled }) {
                   onNavigate(item.id);
                   setMobileOpen(false);
                 }}
-                className="block w-full text-left py-2 text-stone-700 hover:text-stone-900"
+                className="block w-full text-left py-2 text-navy-700 hover:text-navy-900"
               >
                 {item.label}
               </button>
@@ -137,52 +136,51 @@ function HeroSection({ onNavigate }) {
   return (
     <section id="home" className="min-h-screen relative flex items-center">
       {/* Background */}
-      <div className="absolute inset-0 bg-stone-900">
+      <div className="absolute inset-0 bg-navy-900">
         {/* Logo on right side */}
         <div 
-          className="absolute right-0 top-0 bottom-0 w-1/2 opacity-20"
+          className="absolute right-0 top-0 bottom-0 w-1/2 opacity-[0.18]"
           style={{
-            backgroundImage: `url(${IMAGES.logo})`,
-            backgroundSize: "80%",
+            backgroundImage: `url(${IMAGES.logoLight})`,
+            backgroundSize: "78%",
             backgroundPosition: "center right 10%",
             backgroundRepeat: "no-repeat",
-            filter: "invert(1)",
             maskImage: "linear-gradient(to right, transparent, black 30%)",
             WebkitMaskImage: "linear-gradient(to right, transparent, black 30%)",
           }}
         />
         {/* Gradient overlay for smooth blend */}
-        <div className="absolute inset-0 bg-gradient-to-r from-stone-900 via-stone-900/90 to-stone-900/70" />
+        <div className="absolute inset-0 bg-gradient-to-r from-navy-900 via-navy-900/90 to-navy-900/70" />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 py-32">
         <div className="max-w-2xl">
           <div className="mb-6">
-            <span className="inline-block px-4 py-1 bg-stone-100/10 border border-stone-100/20 text-stone-100 text-sm tracking-widest uppercase">
+            <span className="inline-block px-4 py-1 bg-navy-100/10 border border-navy-100/20 text-navy-100 text-sm tracking-widest uppercase">
               Fort Worth, Texas
             </span>
           </div>
           
-          <h1 className="font-serif text-5xl md:text-7xl text-stone-100 leading-tight mb-6">
+          <h1 className="font-serif text-5xl md:text-7xl text-navy-100 leading-tight mb-6">
             Science-Driven
             <br />
-            <span className="text-stone-400">Golf Instruction</span>
+            <span className="text-navy-400">Golf Instruction</span>
           </h1>
           
-          <p className="text-lg text-stone-300 mb-8 leading-relaxed max-w-xl">
+          <p className="text-lg text-navy-300 mb-8 leading-relaxed max-w-xl">
             Unlock your potential through biomechanics-based coaching. I help golfers of all levels build efficient, powerful, and repeatable swings.
           </p>
 
           <div className="flex flex-wrap gap-4">
             <button
               onClick={() => onNavigate("book")}
-              className="px-8 py-4 bg-stone-100 text-stone-900 font-medium tracking-wide hover:bg-white transition-colors"
+              className="px-8 py-4 bg-navy-100 text-navy-900 font-medium tracking-wide hover:bg-white transition-colors"
             >
               Book a Lesson
             </button>
             <button
               onClick={() => onNavigate("about")}
-              className="px-8 py-4 border border-stone-100/30 text-stone-100 font-medium tracking-wide hover:bg-stone-100/10 transition-colors"
+              className="px-8 py-4 border border-navy-100/30 text-navy-100 font-medium tracking-wide hover:bg-navy-100/10 transition-colors"
             >
               Learn More
             </button>
@@ -192,8 +190,8 @@ function HeroSection({ onNavigate }) {
 
       {/* Scroll indicator */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-        <div className="w-6 h-10 border-2 border-stone-100/30 rounded-full flex justify-center pt-2">
-          <div className="w-1 h-2 bg-stone-100/50 rounded-full" />
+        <div className="w-6 h-10 border-2 border-navy-100/30 rounded-full flex justify-center pt-2">
+          <div className="w-1 h-2 bg-navy-100/50 rounded-full" />
         </div>
       </div>
     </section>
@@ -203,15 +201,15 @@ function HeroSection({ onNavigate }) {
 // About Section
 function AboutSection() {
   return (
-    <section id="about" className="py-24 bg-stone-100">
+    <section id="about" className="py-24 bg-navy-100">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <div>
-            <span className="text-sm tracking-widest text-stone-500 uppercase mb-4 block">About</span>
-            <h2 className="font-serif text-4xl md:text-5xl text-stone-900 mb-6">
+            <span className="text-sm tracking-widest text-navy-500 uppercase mb-4 block">About</span>
+            <h2 className="font-serif text-4xl md:text-5xl text-navy-900 mb-6">
               TD North
             </h2>
-            <div className="space-y-4 text-stone-600 leading-relaxed">
+            <div className="space-y-4 text-navy-600 leading-relaxed">
               <p>
                 I grew up in a coaching family in West Texas, playing multiple sports through college. I played golf at #1 ranked Odessa College and the University of St. Thomas, then graduated with a Bachelor's in Exercise Science from the University of Houston. I then moved on to receive a Master's in Golf Biomechanics from Texas Woman's University.
               </p>
@@ -223,11 +221,11 @@ function AboutSection() {
               </p>
             </div>
 
-            <div className="mt-8 pt-8 border-t border-stone-200">
-              <h3 className="font-medium text-stone-900 mb-4">Certifications & Mentors</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-stone-600">
+            <div className="mt-8 pt-8 border-t border-navy-200">
+              <h3 className="font-medium text-navy-900 mb-4">Certifications & Mentors</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-navy-600">
                 <div>
-                  <p className="font-medium text-stone-800 mb-2">Certifications</p>
+                  <p className="font-medium text-navy-800 mb-2">Certifications</p>
                   <ul className="space-y-1">
                     <li>Golf Digest Instructor Certification</li>
                     <li>Trackman Level 1 & 2</li>
@@ -241,10 +239,10 @@ function AboutSection() {
                   </ul>
                 </div>
                 <div>
-                  <p className="font-medium text-stone-800 mb-2">Mentors</p>
+                  <p className="font-medium text-navy-800 mb-2">Mentors</p>
                   <ul className="space-y-1">
-                    <li>Justin Poynter (Crown Golf)</li>
-                    <li>Joey Wuertemberger (Crown Golf)</li>
+                    <li>Justin Poynter</li>
+                    <li>Joey Wuertemberger</li>
                     <li>Billy Tuten (Former PGA Tour)</li>
                     <li>Dr. Young-Hoo Kwon (TWU Biomechanics)</li>
                   </ul>
@@ -254,15 +252,15 @@ function AboutSection() {
           </div>
 
           <div className="relative">
-            <div className="aspect-[4/5] bg-stone-200 relative overflow-hidden">
+            <div className="aspect-[4/5] bg-navy-200 relative overflow-hidden">
               <img
                 src={IMAGES.aboutPhoto}
                 alt="TD North"
                 className="absolute inset-0 w-full h-full object-cover object-top"
               />
             </div>
-            <div className="absolute -bottom-8 -left-8 w-48 h-48 bg-stone-900 flex items-center justify-center p-6">
-              <div className="text-center text-stone-100">
+            <div className="absolute -bottom-8 -left-8 w-48 h-48 bg-navy-900 flex items-center justify-center p-6">
+              <div className="text-center text-navy-100">
                 <div className="text-4xl font-serif mb-1">5+</div>
                 <div className="text-xs tracking-widest uppercase">Years Teaching</div>
               </div>
@@ -320,14 +318,14 @@ function ServicesSection({ onNavigate }) {
   ];
 
   return (
-    <section id="services" className="py-24 bg-stone-900">
+    <section id="services" className="py-24 bg-navy-900">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
-          <span className="text-sm tracking-widest text-stone-500 uppercase mb-4 block">Services</span>
-          <h2 className="font-serif text-4xl md:text-5xl text-stone-100 mb-4">
+          <span className="text-sm tracking-widest text-navy-500 uppercase mb-4 block">Services</span>
+          <h2 className="font-serif text-4xl md:text-5xl text-navy-100 mb-4">
             Lesson Options
           </h2>
-          <p className="text-stone-400 max-w-2xl mx-auto">
+          <p className="text-navy-400 max-w-2xl mx-auto">
             Choose the instruction format that fits your goals and schedule.
           </p>
         </div>
@@ -336,26 +334,26 @@ function ServicesSection({ onNavigate }) {
           {services.map((service, idx) => (
             <div
               key={idx}
-              className="bg-stone-800/50 border border-stone-700 p-6 hover:border-stone-500 transition-colors group"
+              className="bg-navy-800/50 border border-navy-700 p-6 hover:border-navy-500 transition-colors group"
             >
               <div className="mb-4">
-                <h3 className="font-serif text-xl text-stone-100">{service.title}</h3>
-                <p className="text-stone-500 text-sm">{service.subtitle}</p>
+                <h3 className="font-serif text-xl text-navy-100">{service.title}</h3>
+                <p className="text-navy-500 text-sm">{service.subtitle}</p>
               </div>
               
               <div className="mb-4">
-                <span className="text-3xl font-serif text-stone-100">{service.price}</span>
-                <span className="text-stone-500 text-sm ml-2">{service.unit}</span>
+                <span className="text-3xl font-serif text-navy-100">{service.price}</span>
+                <span className="text-navy-500 text-sm ml-2">{service.unit}</span>
               </div>
 
-              <p className="text-stone-400 text-sm mb-6 leading-relaxed">
+              <p className="text-navy-400 text-sm mb-6 leading-relaxed">
                 {service.description}
               </p>
 
               <ul className="space-y-2 mb-6">
                 {service.features.map((feature, i) => (
-                  <li key={i} className="text-stone-500 text-sm flex items-center gap-2">
-                    <span className="w-1 h-1 bg-stone-500 rounded-full" />
+                  <li key={i} className="text-navy-500 text-sm flex items-center gap-2">
+                    <span className="w-1 h-1 bg-navy-500 rounded-full" />
                     {feature}
                   </li>
                 ))}
@@ -363,7 +361,7 @@ function ServicesSection({ onNavigate }) {
 
               <button
                 onClick={() => onNavigate("book")}
-                className="w-full py-3 border border-stone-600 text-stone-300 text-sm tracking-wide hover:bg-stone-100 hover:text-stone-900 hover:border-stone-100 transition-colors"
+                className="w-full py-3 border border-navy-600 text-navy-300 text-sm tracking-wide hover:bg-navy-100 hover:text-navy-900 hover:border-navy-100 transition-colors"
               >
                 Book Now
               </button>
@@ -378,66 +376,66 @@ function ServicesSection({ onNavigate }) {
 // Location Section
 function LocationSection() {
   return (
-    <section id="location" className="py-24 bg-stone-100">
+    <section id="location" className="py-24 bg-navy-100">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-16">
           <div>
-            <span className="text-sm tracking-widest text-stone-500 uppercase mb-4 block">Location</span>
-            <h2 className="font-serif text-4xl md:text-5xl text-stone-900 mb-6">
+            <span className="text-sm tracking-widest text-navy-500 uppercase mb-4 block">Location</span>
+            <h2 className="font-serif text-4xl md:text-5xl text-navy-900 mb-6">
               Mira Vista<br />Country Club
             </h2>
-            <p className="text-stone-600 leading-relaxed mb-8">
+            <p className="text-navy-600 leading-relaxed mb-8">
               Located at the beautiful Mira Vista Country Club in Fort Worth, Texas. The facility offers world-class practice amenities and a championship golf course—everything you need to develop every aspect of your game.
             </p>
 
             <div className="space-y-4">
               <div className="flex items-start gap-4">
-                <div className="w-10 h-10 bg-stone-900 flex items-center justify-center flex-shrink-0">
-                  <svg className="w-5 h-5 text-stone-100" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <div className="w-10 h-10 bg-navy-900 flex items-center justify-center flex-shrink-0">
+                  <svg className="w-5 h-5 text-navy-100" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                   </svg>
                 </div>
                 <div>
-                  <p className="font-medium text-stone-900">Address</p>
-                  <p className="text-stone-600">6600 Mira Vista Blvd, Fort Worth, TX 76132</p>
+                  <p className="font-medium text-navy-900">Address</p>
+                  <p className="text-navy-600">6600 Mira Vista Blvd, Fort Worth, TX 76132</p>
                 </div>
               </div>
 
               <div className="flex items-start gap-4">
-                <div className="w-10 h-10 bg-stone-900 flex items-center justify-center flex-shrink-0">
-                  <svg className="w-5 h-5 text-stone-100" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <div className="w-10 h-10 bg-navy-900 flex items-center justify-center flex-shrink-0">
+                  <svg className="w-5 h-5 text-navy-100" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                 </div>
                 <div>
-                  <p className="font-medium text-stone-900">Hours</p>
-                  <p className="text-stone-600">By Appointment</p>
+                  <p className="font-medium text-navy-900">Hours</p>
+                  <p className="text-navy-600">By Appointment</p>
                 </div>
               </div>
 
               <div className="flex items-start gap-4">
-                <div className="w-10 h-10 bg-stone-900 flex items-center justify-center flex-shrink-0">
-                  <svg className="w-5 h-5 text-stone-100" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <div className="w-10 h-10 bg-navy-900 flex items-center justify-center flex-shrink-0">
+                  <svg className="w-5 h-5 text-navy-100" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                   </svg>
                 </div>
                 <div>
-                  <p className="font-medium text-stone-900">Phone</p>
-                  <p className="text-stone-600">(432) 770-5253</p>
+                  <p className="font-medium text-navy-900">Phone</p>
+                  <p className="text-navy-600">(432) 770-5253</p>
                 </div>
               </div>
             </div>
           </div>
 
           <div className="grid grid-cols-2 gap-4">
-            <div className="aspect-square bg-stone-200 overflow-hidden">
+            <div className="aspect-square bg-navy-200 overflow-hidden">
               <img src={IMAGES.course} alt="Golf course" className="w-full h-full object-cover" />
             </div>
-            <div className="aspect-square bg-stone-200 overflow-hidden">
+            <div className="aspect-square bg-navy-200 overflow-hidden">
               <img src={IMAGES.group} alt="Group on course" className="w-full h-full object-cover" />
             </div>
-            <div className="col-span-2 aspect-video bg-stone-200 overflow-hidden">
+            <div className="col-span-2 aspect-video bg-navy-200 overflow-hidden">
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3357.5!2d-97.42!3d32.68!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864e71c5d6e3f8a7%3A0x9f0c0c0c0c0c0c0c!2sMira%20Vista%20Country%20Club!5e0!3m2!1sen!2sus!4v1234567890"
                 width="100%"
@@ -466,46 +464,46 @@ function SuccessSection() {
   ];
 
   return (
-    <section id="success" className="py-24 bg-stone-900">
+    <section id="success" className="py-24 bg-navy-900">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
-          <span className="text-sm tracking-widest text-stone-500 uppercase mb-4 block">Results</span>
-          <h2 className="font-serif text-4xl md:text-5xl text-stone-100 mb-4">
+          <span className="text-sm tracking-widest text-navy-500 uppercase mb-4 block">Results</span>
+          <h2 className="font-serif text-4xl md:text-5xl text-navy-100 mb-4">
             Student Success
           </h2>
-          <p className="text-stone-400 max-w-2xl mx-auto">
+          <p className="text-navy-400 max-w-2xl mx-auto">
             Nothing is more rewarding than watching students achieve their goals on the course.
           </p>
         </div>
 
         {/* Photo Grid */}
         <div className="grid md:grid-cols-3 gap-4 mb-16">
-          <div className="aspect-[3/4] bg-stone-800 overflow-hidden">
-            <img src={IMAGES.trophy2} alt="Student with trophies" className="w-full h-full object-cover" />
+          <div className="aspect-[3/4] bg-navy-800 overflow-hidden">
+            <img src={IMAGES.juniorClinic} alt="Junior golf clinic at Mira Vista" className="w-full h-full object-cover" />
           </div>
-          <div className="aspect-[3/4] bg-stone-800 overflow-hidden">
-            <img src={IMAGES.trophy3} alt="Student winning tournament" className="w-full h-full object-cover" />
+          <div className="aspect-[3/4] bg-navy-800 overflow-hidden">
+            <img src={IMAGES.juniorPair} alt="Junior golfers at Mira Vista" className="w-full h-full object-cover" />
           </div>
-          <div className="aspect-[3/4] bg-stone-800 overflow-hidden">
-            <img src={IMAGES.juniors} alt="Junior golfers" className="w-full h-full object-cover" />
+          <div className="aspect-[3/4] bg-navy-800 overflow-hidden">
+            <img src={IMAGES.juniorTeam} alt="Junior development group at Mira Vista" className="w-full h-full object-cover object-top" />
           </div>
         </div>
 
         <div className="grid md:grid-cols-2 gap-16 items-center">
           <div>
-            <h3 className="font-serif text-2xl text-stone-100 mb-6">Achievements</h3>
+            <h3 className="font-serif text-2xl text-navy-100 mb-6">Achievements</h3>
             <ul className="space-y-4">
               {achievements.map((item, idx) => (
-                <li key={idx} className="flex items-center gap-4 text-stone-300">
-                  <span className="w-2 h-2 bg-stone-500 rounded-full" />
+                <li key={idx} className="flex items-center gap-4 text-navy-300">
+                  <span className="w-2 h-2 bg-navy-500 rounded-full" />
                   {item}
                 </li>
               ))}
             </ul>
           </div>
 
-          <div className="aspect-video bg-stone-800 overflow-hidden">
-            <img src={IMAGES.juniorBoys} alt="Junior golfers with medals" className="w-full h-full object-cover object-[center_30%]" />
+          <div className="aspect-video bg-navy-800 overflow-hidden">
+            <img src={IMAGES.juniorPatio} alt="Junior golfers at Mira Vista clubhouse" className="w-full h-full object-cover object-[center_40%]" />
           </div>
         </div>
       </div>
@@ -528,14 +526,14 @@ function InstagramSection() {
   }, []);
 
   return (
-    <section id="instagram" className="py-24 bg-stone-100">
+    <section id="instagram" className="py-24 bg-navy-100">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-12">
-          <span className="text-sm tracking-widest text-stone-500 uppercase mb-4 block">Follow Along</span>
-          <h2 className="font-serif text-4xl md:text-5xl text-stone-900 mb-4">
+          <span className="text-sm tracking-widest text-navy-500 uppercase mb-4 block">Follow Along</span>
+          <h2 className="font-serif text-4xl md:text-5xl text-navy-900 mb-4">
             @tdnorthgolf
           </h2>
-          <p className="text-stone-600 max-w-2xl mx-auto">
+          <p className="text-navy-600 max-w-2xl mx-auto">
             Follow me on Instagram for swing tips, student highlights, and behind-the-scenes content.
           </p>
         </div>
@@ -549,7 +547,7 @@ function InstagramSection() {
             href="https://www.instagram.com/tdnorthgolf/"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-stone-900 text-stone-100 font-medium tracking-wide hover:bg-stone-800 transition-colors"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-navy-900 text-navy-100 font-medium tracking-wide hover:bg-navy-800 transition-colors"
           >
             <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
               <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
@@ -567,29 +565,29 @@ function FAQSection() {
   const [openIndex, setOpenIndex] = useState(null);
 
   return (
-    <section id="faq" className="py-24 bg-stone-100">
+    <section id="faq" className="py-24 bg-navy-100">
       <div className="max-w-3xl mx-auto px-6">
         <div className="text-center mb-16">
-          <span className="text-sm tracking-widest text-stone-500 uppercase mb-4 block">FAQ</span>
-          <h2 className="font-serif text-4xl md:text-5xl text-stone-900 mb-4">
+          <span className="text-sm tracking-widest text-navy-500 uppercase mb-4 block">FAQ</span>
+          <h2 className="font-serif text-4xl md:text-5xl text-navy-900 mb-4">
             Common Questions
           </h2>
         </div>
 
         <div className="space-y-4">
           {FAQS.map((faq, idx) => (
-            <div key={idx} className="border border-stone-200 bg-white">
+            <div key={idx} className="border border-navy-200 bg-white">
               <button
                 onClick={() => setOpenIndex(openIndex === idx ? null : idx)}
                 className="w-full px-6 py-4 flex items-center justify-between text-left"
               >
-                <span className="font-medium text-stone-900">{faq.question}</span>
-                <span className={`text-2xl text-stone-400 transition-transform ${openIndex === idx ? "rotate-45" : ""}`}>
+                <span className="font-medium text-navy-900">{faq.question}</span>
+                <span className={`text-2xl text-navy-400 transition-transform ${openIndex === idx ? "rotate-45" : ""}`}>
                   +
                 </span>
               </button>
               {openIndex === idx && (
-                <div className="px-6 pb-4 text-stone-600 leading-relaxed">
+                <div className="px-6 pb-4 text-navy-600 leading-relaxed">
                   {faq.answer}
                 </div>
               )}
@@ -626,21 +624,21 @@ function BookingSection() {
   };
 
   return (
-    <section id="book" className="py-24 bg-stone-900">
+    <section id="book" className="py-24 bg-navy-900">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-16">
           <div>
-            <span className="text-sm tracking-widest text-stone-500 uppercase mb-4 block">Get Started</span>
-            <h2 className="font-serif text-4xl md:text-5xl text-stone-100 mb-6">
+            <span className="text-sm tracking-widest text-navy-500 uppercase mb-4 block">Get Started</span>
+            <h2 className="font-serif text-4xl md:text-5xl text-navy-100 mb-6">
               Book a Lesson
             </h2>
-            <p className="text-stone-400 leading-relaxed mb-8">
+            <p className="text-navy-400 leading-relaxed mb-8">
               Ready to improve your game? Send me a message or contact me directly to schedule your lesson.
             </p>
 
-            <div className="pt-8 border-t border-stone-700">
-              <p className="text-stone-500 text-sm mb-4">Contact directly:</p>
-              <div className="space-y-2 text-stone-300">
+            <div className="pt-8 border-t border-navy-700">
+              <p className="text-navy-500 text-sm mb-4">Contact directly:</p>
+              <div className="space-y-2 text-navy-300">
                 <p>📧 tdnorthgolf@gmail.com</p>
                 <p>📞 (432) 770-5253</p>
               </div>
@@ -648,60 +646,60 @@ function BookingSection() {
           </div>
 
           {/* Contact Form */}
-          <div className="bg-stone-800/50 border border-stone-700 p-8">
-            <h3 className="font-serif text-xl text-stone-100 mb-6">Send a Message</h3>
+          <div className="bg-navy-800/50 border border-navy-700 p-8">
+            <h3 className="font-serif text-xl text-navy-100 mb-6">Send a Message</h3>
             
             {submitted ? (
               <div className="text-center py-12">
-                <div className="w-16 h-16 bg-stone-700 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <svg className="w-8 h-8 text-stone-100" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <div className="w-16 h-16 bg-navy-700 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <svg className="w-8 h-8 text-navy-100" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
                 </div>
-                <p className="text-stone-100 font-medium mb-2">Message Sent!</p>
-                <p className="text-stone-400">I'll get back to you as soon as possible.</p>
+                <p className="text-navy-100 font-medium mb-2">Message Sent!</p>
+                <p className="text-navy-400">I'll get back to you as soon as possible.</p>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
-                  <label className="block text-stone-400 text-sm mb-2">Name *</label>
+                  <label className="block text-navy-400 text-sm mb-2">Name *</label>
                   <input
                     type="text"
                     name="name"
                     required
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full px-4 py-3 bg-stone-900 border border-stone-600 text-stone-100 focus:border-stone-400 focus:outline-none"
+                    className="w-full px-4 py-3 bg-navy-900 border border-navy-600 text-navy-100 focus:border-navy-400 focus:outline-none"
                   />
                 </div>
                 <div>
-                  <label className="block text-stone-400 text-sm mb-2">Email *</label>
+                  <label className="block text-navy-400 text-sm mb-2">Email *</label>
                   <input
                     type="email"
                     name="email"
                     required
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full px-4 py-3 bg-stone-900 border border-stone-600 text-stone-100 focus:border-stone-400 focus:outline-none"
+                    className="w-full px-4 py-3 bg-navy-900 border border-navy-600 text-navy-100 focus:border-navy-400 focus:outline-none"
                   />
                 </div>
                 <div>
-                  <label className="block text-stone-400 text-sm mb-2">Phone</label>
+                  <label className="block text-navy-400 text-sm mb-2">Phone</label>
                   <input
                     type="tel"
                     name="phone"
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    className="w-full px-4 py-3 bg-stone-900 border border-stone-600 text-stone-100 focus:border-stone-400 focus:outline-none"
+                    className="w-full px-4 py-3 bg-navy-900 border border-navy-600 text-navy-100 focus:border-navy-400 focus:outline-none"
                   />
                 </div>
                 <div>
-                  <label className="block text-stone-400 text-sm mb-2">What are you looking for?</label>
+                  <label className="block text-navy-400 text-sm mb-2">What are you looking for?</label>
                   <select
                     name="interest"
                     value={formData.interest}
                     onChange={(e) => setFormData({ ...formData, interest: e.target.value })}
-                    className="w-full px-4 py-3 bg-stone-900 border border-stone-600 text-stone-100 focus:border-stone-400 focus:outline-none"
+                    className="w-full px-4 py-3 bg-navy-900 border border-navy-600 text-navy-100 focus:border-navy-400 focus:outline-none"
                   >
                     <option value="">Select an option</option>
                     <option value="private">Private Lessons</option>
@@ -713,19 +711,19 @@ function BookingSection() {
                   </select>
                 </div>
                 <div>
-                  <label className="block text-stone-400 text-sm mb-2">Message</label>
+                  <label className="block text-navy-400 text-sm mb-2">Message</label>
                   <textarea
                     name="message"
                     rows={4}
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    className="w-full px-4 py-3 bg-stone-900 border border-stone-600 text-stone-100 focus:border-stone-400 focus:outline-none resize-none"
+                    className="w-full px-4 py-3 bg-navy-900 border border-navy-600 text-navy-100 focus:border-navy-400 focus:outline-none resize-none"
                     placeholder="Tell me about your golf goals..."
                   />
                 </div>
                 <button
                   type="submit"
-                  className="w-full py-4 bg-stone-100 text-stone-900 font-medium tracking-wide hover:bg-white transition-colors"
+                  className="w-full py-4 bg-navy-100 text-navy-900 font-medium tracking-wide hover:bg-white transition-colors"
                 >
                   Send Message
                 </button>
@@ -741,16 +739,16 @@ function BookingSection() {
 // Footer
 function Footer() {
   return (
-    <footer className="bg-stone-950 py-12">
+    <footer className="bg-navy-950 py-12">
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-          <Logo />
+          <Logo light />
           <div className="flex items-center gap-6">
             <a
               href="https://www.instagram.com/tdnorthgolf/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-stone-500 hover:text-stone-300 transition-colors"
+              className="text-navy-500 hover:text-navy-300 transition-colors"
             >
               <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
@@ -758,7 +756,7 @@ function Footer() {
             </a>
           </div>
         </div>
-        <div className="mt-8 pt-8 border-t border-stone-800 text-center text-stone-600 text-sm">
+        <div className="mt-8 pt-8 border-t border-navy-800 text-center text-navy-600 text-sm">
           © {new Date().getFullYear()} TD North Golf. All rights reserved.
         </div>
       </div>
@@ -801,7 +799,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-stone-100">
+    <div className="min-h-screen bg-navy-100">
       <Navigation
         activeSection={activeSection}
         onNavigate={handleNavigate}
