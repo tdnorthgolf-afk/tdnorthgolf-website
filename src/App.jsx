@@ -17,6 +17,9 @@ const IMAGES = {
   gdBadgePng: "/Images/golf-digest-best-young-teachers-2027-2028.png",
 };
 
+const MIRA_VISTA_ADDRESS = "Mira Vista Country Club, 6600 Mira Vista Blvd, Fort Worth, TX 76132";
+const DIRECTIONS_URL = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(MIRA_VISTA_ADDRESS)}`;
+
 const GOLF_DIGEST_BYT_URL =
   "https://www.golfdigest.com/story/best-young-teachers-in-america-rising-stars-golf-instruction";
 
@@ -47,6 +50,7 @@ function GolfDigestBadge({ className = "" }) {
 const NAV_ITEMS = [
   { id: "home", label: "Home" },
   { id: "about", label: "About" },
+  { id: "philosophy", label: "Philosophy" },
   { id: "services", label: "Services" },
   { id: "performance", label: "Performance" },
   { id: "location", label: "Location" },
@@ -93,7 +97,7 @@ function Logo({ className = "", light = false }) {
       <div className="w-12 h-12 flex items-center justify-center overflow-hidden">
         <img src={light ? IMAGES.logoLight : IMAGES.logo} alt="TD North Golf" className="w-full h-full object-contain" />
       </div>
-      <span className={`font-serif text-xl tracking-wide ${light ? "text-navy-50" : "text-navy-900"}`}>TD NORTH GOLF</span>
+      <span className={`font-serif text-xl tracking-wide whitespace-nowrap ${light ? "text-navy-50" : "text-navy-900"}`}>TD NORTH GOLF</span>
     </div>
   );
 }
@@ -111,12 +115,12 @@ function Navigation({ activeSection, onNavigate, isScrolled }) {
           <Logo light={!isScrolled} />
           
           {/* Desktop Nav */}
-          <div className="hidden lg:flex items-center gap-8">
+          <div className="hidden lg:flex items-center gap-5 xl:gap-8">
             {NAV_ITEMS.map((item) => (
               <button
                 key={item.id}
                 onClick={() => onNavigate(item.id)}
-                className={`text-sm tracking-wide transition-colors ${
+                className={`text-sm tracking-wide whitespace-nowrap transition-colors ${
                   activeSection === item.id
                     ? "text-navy-900 font-medium"
                     : isScrolled ? "text-navy-600 hover:text-navy-900" : "text-navy-300 hover:text-white"
@@ -249,9 +253,12 @@ function AboutSection() {
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <div>
             <span className="text-sm tracking-widest text-navy-500 uppercase mb-4 block">About</span>
-            <h2 className="font-serif text-4xl md:text-5xl text-navy-900 mb-6">
+            <h2 className="font-serif text-4xl md:text-5xl text-navy-900 mb-2">
               TD North
             </h2>
+            <p className="text-navy-700 font-medium tracking-wide mb-6">
+              Director of Instruction, Mira Vista Country Club
+            </p>
             <div className="space-y-4 text-navy-600 leading-relaxed">
               <p>
                 I grew up in a coaching family in West Texas, playing multiple sports through college. I played golf at #1 ranked Odessa College and the University of St. Thomas, then graduated with a Bachelor's in Exercise Science from the University of Houston. I then moved on to receive a Master's in Golf Biomechanics from Texas Woman's University.
@@ -327,6 +334,90 @@ function AboutSection() {
               </div>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// Philosophy Section — the four pillars
+const PILLARS = [
+  {
+    num: "01",
+    name: "Technical Proficiency",
+    def: "The technique and skill required to perform at a high level.",
+    items: [
+      "Repeatable, efficient, adaptable motion",
+      "Control of trajectory, strike, curve, and distance",
+      "Driving and ball striking",
+      "Short game and putting",
+    ],
+  },
+  {
+    num: "02",
+    name: "Mental Performance",
+    def: "Decision making and mentality geared to perform.",
+    items: [
+      "Confidence, trust, and positivity",
+      "Discipline, grit, and perseverance",
+      "Emotional control and poise",
+      "Course management and analytical decision making",
+    ],
+  },
+  {
+    num: "03",
+    name: "Human Performance",
+    def: "Building the body to perform and withstand the game.",
+    items: [
+      "Strong, powerful, and fast",
+      "Mobile and stable",
+      "Durable through the volume of practice and play",
+      "Injury prevention, nutrition, and hydration",
+    ],
+  },
+  {
+    num: "04",
+    name: "Lifestyle Management",
+    def: "Organization off the course that removes distraction.",
+    items: [
+      "Consistency and routine",
+      "Sleep and recovery",
+      "Preparation and goal setting",
+      "Time management and stress reduction",
+    ],
+  },
+];
+
+function PhilosophySection() {
+  return (
+    <section id="philosophy" className="py-24 bg-navy-50">
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="text-center mb-16">
+          <span className="text-sm tracking-widest text-navy-500 uppercase mb-4 block">Philosophy</span>
+          <h2 className="font-serif text-4xl md:text-5xl text-navy-900 mb-4">
+            Every player is built on four pillars
+          </h2>
+          <p className="text-navy-600 max-w-2xl mx-auto leading-relaxed">
+            I assess every golfer across all four, using conversation, ball flight, data, and physical screening. Then we attack the area that will move your game the most.
+          </p>
+        </div>
+
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {PILLARS.map((p) => (
+            <div key={p.num} className="bg-white border border-navy-200 p-6 flex flex-col">
+              <div className="font-serif text-3xl text-navy-400 mb-3">{p.num}</div>
+              <h3 className="font-serif text-2xl text-navy-900 leading-tight mb-2">{p.name}</h3>
+              <p className="text-navy-600 text-sm leading-relaxed mb-5 lg:min-h-[2.75rem]">{p.def}</p>
+              <ul className="space-y-2 pt-5 border-t border-navy-100">
+                {p.items.map((item, i) => (
+                  <li key={i} className="text-navy-700 text-sm flex items-start gap-2">
+                    <span className="w-1 h-1 bg-navy-500 rounded-full mt-2 shrink-0" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </div>
       </div>
     </section>
@@ -567,6 +658,14 @@ function LocationSection() {
                 <div>
                   <p className="font-medium text-navy-900">Address</p>
                   <p className="text-navy-600">6600 Mira Vista Blvd, Fort Worth, TX 76132</p>
+                  <a
+                    href={DIRECTIONS_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm text-navy-800 underline underline-offset-2 hover:text-navy-950"
+                  >
+                    Get directions
+                  </a>
                 </div>
               </div>
 
@@ -605,7 +704,7 @@ function LocationSection() {
             </div>
             <div className="col-span-2 aspect-video bg-navy-200 overflow-hidden">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3357.5!2d-97.42!3d32.68!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864e71c5d6e3f8a7%3A0x9f0c0c0c0c0c0c0c!2sMira%20Vista%20Country%20Club!5e0!3m2!1sen!2sus!4v1234567890"
+                src={`https://maps.google.com/maps?q=${encodeURIComponent(MIRA_VISTA_ADDRESS)}&z=14&output=embed`}
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
@@ -777,18 +876,28 @@ function BookingSection() {
     message: "",
   });
   const [submitted, setSubmitted] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Form will be handled by Formspree or similar
-    const form = e.target;
-    fetch("https://formspree.io/f/xreqvrvj", {
-      method: "POST",
-      body: new FormData(form),
-      headers: { Accept: "application/json" },
-    })
-      .then(() => setSubmitted(true))
-      .catch(() => setSubmitted(true)); // Still show success for demo
+    setSending(true);
+    setError(false);
+    try {
+      const res = await fetch("https://formspree.io/f/xreqvrvj", {
+        method: "POST",
+        body: new FormData(e.target),
+        headers: { Accept: "application/json" },
+      });
+      // Only confirm when Formspree actually accepted the message
+      if (!res.ok) throw new Error(`Formspree returned ${res.status}`);
+      setSubmitted(true);
+    } catch (err) {
+      console.error(err);
+      setError(true);
+    } finally {
+      setSending(false);
+    }
   };
 
   return (
@@ -889,11 +998,19 @@ function BookingSection() {
                     placeholder="Tell me about your golf goals..."
                   />
                 </div>
+                {error && (
+                  <div role="alert" className="border border-red-400/40 bg-red-950/30 px-4 py-3 text-sm text-red-200">
+                    Your message didn't go through. Please try again, or reach me directly at{" "}
+                    <a href="mailto:tdnorthgolf@gmail.com" className="underline">tdnorthgolf@gmail.com</a> or{" "}
+                    <a href="tel:+14327705253" className="underline">(432) 770-5253</a>.
+                  </div>
+                )}
                 <button
                   type="submit"
-                  className="w-full py-4 bg-navy-100 text-navy-900 font-medium tracking-wide hover:bg-white transition-colors"
+                  disabled={sending}
+                  className="w-full py-4 bg-navy-100 text-navy-900 font-medium tracking-wide hover:bg-white transition-colors disabled:opacity-60 disabled:cursor-wait"
                 >
-                  Send Message
+                  {sending ? "Sending…" : "Send Message"}
                 </button>
               </form>
             )}
@@ -909,13 +1026,44 @@ function Footer() {
   return (
     <footer className="bg-navy-950 py-12">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-          <Logo light />
+        <div className="grid gap-10 md:grid-cols-3 text-center md:text-left">
+          <div className="flex flex-col items-center md:items-start gap-3">
+            <Logo light />
+            <p className="text-navy-400 text-sm leading-relaxed">
+              TD North, Director of Instruction
+              <br />
+              Mira Vista Country Club
+            </p>
+          </div>
+
+          <div className="text-sm leading-relaxed">
+            <p className="text-navy-500 tracking-widest uppercase text-xs mb-3">Contact</p>
+            <a href="mailto:tdnorthgolf@gmail.com" className="block text-navy-300 hover:text-navy-100">tdnorthgolf@gmail.com</a>
+            <a href="tel:+14327705253" className="block text-navy-300 hover:text-navy-100">(432) 770-5253</a>
+          </div>
+
+          <div className="text-sm leading-relaxed">
+            <p className="text-navy-500 tracking-widest uppercase text-xs mb-3">Location</p>
+            <a
+              href={DIRECTIONS_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block text-navy-300 hover:text-navy-100"
+            >
+              6600 Mira Vista Blvd
+              <br />
+              Fort Worth, TX 76132
+            </a>
+          </div>
+        </div>
+
+        <div className="mt-10 flex justify-center md:justify-start">
           <div className="flex items-center gap-6">
             <a
               href="https://www.instagram.com/tdnorthgolf/"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="TD North Golf on Instagram"
               className="text-navy-500 hover:text-navy-300 transition-colors"
             >
               <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
@@ -976,6 +1124,7 @@ export default function App() {
       
       <HeroSection onNavigate={handleNavigate} />
       <AboutSection />
+      <PhilosophySection />
       <ServicesSection onNavigate={handleNavigate} />
       <PerformanceSection />
       <LocationSection />
