@@ -12,7 +12,37 @@ const IMAGES = {
   juniorPair: "/Images/IMG_0358.jpeg",
   juniorTeam: "/Images/IMG_5185.jpeg",
   juniorPatio: "/Images/IMG_1675.jpeg",
+  // Golf Digest Best Young Teachers in America 2027-2028 honoree badge
+  gdBadgeWebp: "/Images/golf-digest-best-young-teachers-2027-2028.webp",
+  gdBadgePng: "/Images/golf-digest-best-young-teachers-2027-2028.png",
 };
+
+const GOLF_DIGEST_BYT_URL =
+  "https://www.golfdigest.com/story/best-young-teachers-in-america-rising-stars-golf-instruction";
+
+// Golf Digest badge, linked to the published list so visitors can verify it
+function GolfDigestBadge({ className = "" }) {
+  return (
+    <a
+      href={GOLF_DIGEST_BYT_URL}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Golf Digest Best Young Teachers in America 2027–2028 (opens GolfDigest.com)"
+      className={`block shrink-0 transition-transform hover:-translate-y-0.5 ${className}`}
+    >
+      <picture>
+        <source srcSet={IMAGES.gdBadgeWebp} type="image/webp" />
+        <img
+          src={IMAGES.gdBadgePng}
+          alt="Golf Digest Best Young Teachers in America 2027–2028"
+          width="600"
+          height="634"
+          className="w-full h-auto shadow-lg"
+        />
+      </picture>
+    </a>
+  );
+}
 
 const NAV_ITEMS = [
   { id: "home", label: "Home" },
@@ -186,6 +216,18 @@ function HeroSection({ onNavigate }) {
               Learn More
             </button>
           </div>
+
+          <div className="mt-12 pt-8 border-t border-navy-100/15 flex items-center gap-5">
+            <GolfDigestBadge className="w-24 md:w-28" />
+            <div>
+              <p className="text-navy-100 font-serif text-xl md:text-2xl leading-snug">
+                Golf Digest Best Young Teachers in America
+              </p>
+              <p className="text-navy-400 text-sm tracking-widest uppercase mt-1">
+                2027–2028
+              </p>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -220,6 +262,24 @@ function AboutSection() {
               <p>
                 My goal is for every client to leave each session with confidence, clarity, and tangible progress in their skills. I take pride in creating an encouraging environment that meets players where they are and helps them unlock their potential. Committed to constant growth, I continuously study the latest coaching methods, technology, and player development strategies to ensure my instruction evolves alongside the game.
               </p>
+            </div>
+
+            <div className="mt-8 pt-8 border-t border-navy-200">
+              <h3 className="font-medium text-navy-900 mb-4">Recognition</h3>
+              <div className="flex items-center gap-5">
+                <GolfDigestBadge className="w-20" />
+                <p className="text-sm text-navy-600 leading-relaxed">
+                  Named to <span className="font-medium text-navy-800">Golf Digest's Best Young Teachers in America</span> (2027–2028), the magazine's national list of the top instructors under 40.{" "}
+                  <a
+                    href={GOLF_DIGEST_BYT_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="underline underline-offset-2 hover:text-navy-900"
+                  >
+                    See the list
+                  </a>
+                </p>
+              </div>
             </div>
 
             <div className="mt-8 pt-8 border-t border-navy-200">
